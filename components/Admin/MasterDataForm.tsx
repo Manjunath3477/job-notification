@@ -1,7 +1,9 @@
 
+'use client'
+
 import React, { useState } from 'react';
 import { Plus, X, ListPlus, Check } from 'lucide-react';
-import { MasterData } from '../../types';
+import { MasterData } from '@/types';
 
 interface MasterDataFormProps {
   masterData: MasterData;

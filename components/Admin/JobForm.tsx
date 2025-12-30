@@ -1,7 +1,9 @@
 
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import { X, Save, AlertCircle, Info } from 'lucide-react';
-import { Job, MasterData } from '../../types';
+import { Job, MasterData } from '@/types';
 
 interface JobFormProps {
   job: Job | null;

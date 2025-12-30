@@ -1,6 +1,8 @@
 
+'use client'
+
 import React, { useEffect, useMemo } from 'react';
-import { Job } from '../types';
+import { Job } from '@/types';
 
 interface SEOProps {
   jobs: Job[];

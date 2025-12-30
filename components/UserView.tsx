@@ -1,11 +1,13 @@
+'use client'
+
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import AdSpace from './AdSpace';
-import JobFilter from './JobFilter';
-import JobTable from './JobTable';
-import SEO from './SEO';
-import JobAlertSubscription from './JobAlertSubscription';
-import Footer from './Footer';
-import { Job, MasterData } from '../types';
+import AdSpace from '@/components/AdSpace';
+import JobFilter from '@/components/JobFilter';
+import JobTable from '@/components/JobTable';
+import SEO from '@/components/SEO';
+import JobAlertSubscription from '@/components/JobAlertSubscription';
+import Footer from '@/components/Footer';
+import { Job, MasterData } from '@/types';
 import { Filter as FilterIcon, ArrowUp } from 'lucide-react';
 
 interface UserViewProps {
@@ -21,8 +23,6 @@ const UserView: React.FC<UserViewProps> = ({ jobs, masterData, searchQuery }) =>
     eligibility: 'All Degrees'
   });
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
-  const [showMobileActions, setShowMobileActions] = useState(false);
-  const filterSectionRef = useRef<HTMLDivElement | null>(null);
 
   const filteredJobs = useMemo(() => {
     return jobs.filter(job => {
@@ -66,31 +66,6 @@ const UserView: React.FC<UserViewProps> = ({ jobs, masterData, searchQuery }) =>
     };
   }, [jobs]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (typeof window === 'undefined') return;
-      setShowMobileActions(window.scrollY > 180);
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToFilters = () => {
-    if (filterSectionRef.current) {
-      filterSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return;
-    }
-    const fallback = document.getElementById('filter-section');
-    fallback?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
-  const scrollToTop = () => {
-    if (typeof window === 'undefined') return;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <>
     {/* Subscription Modal */}
@@ -118,11 +93,7 @@ const UserView: React.FC<UserViewProps> = ({ jobs, masterData, searchQuery }) =>
           
           <div id="jobs" className="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
             {/* Filter Section */}
-            <div
-              id="filter-section"
-              ref={filterSectionRef}
-              className="p-6 md:p-10 border-b border-slate-50 bg-slate-50/20"
-            >
+            <div className="p-6 md:p-10 border-b border-slate-50 bg-slate-50/20">
               <JobFilter 
                 filters={filters} 
                 setFilters={setFilters} 
@@ -181,27 +152,6 @@ const UserView: React.FC<UserViewProps> = ({ jobs, masterData, searchQuery }) =>
          <AdSpace type="banner" label="MOBILE FOOTER AD" />
       </div>
     </div>
-
-    {showMobileActions && (
-      <div className="fixed bottom-5 right-4 z-50 flex flex-col gap-3 lg:hidden">
-        <button
-          type="button"
-          onClick={scrollToFilters}
-          className="px-5 py-3 rounded-full bg-teal-600 text-white text-[11px] font-black uppercase tracking-[0.3em] shadow-2xl flex items-center gap-2 active:scale-95"
-        >
-          <FilterIcon size={18} />
-          Filters
-        </button>
-        <button
-          type="button"
-          onClick={scrollToTop}
-          className="px-5 py-3 rounded-full bg-slate-900 text-white text-[11px] font-black uppercase tracking-[0.3em] shadow-2xl flex items-center gap-2 active:scale-95"
-        >
-          <ArrowUp size={18} />
-          Top
-        </button>
-      </div>
-    )}
     <Footer />
     </>
   );

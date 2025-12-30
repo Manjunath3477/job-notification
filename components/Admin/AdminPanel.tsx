@@ -1,10 +1,12 @@
 
+'use client'
+
 import React, { useState } from 'react';
 import { Plus, Trash2, Edit3, Settings, Briefcase, Database, AlertCircle, Check, X as CloseIcon, Loader2 } from 'lucide-react';
-import { Job, MasterData } from '../../types';
-import JobForm from './JobForm';
-import MasterDataForm from './MasterDataForm';
-import { supabase } from '../../lib/supabase';
+import { Job, MasterData } from '@/types';
+import JobForm from '@/components/Admin/JobForm';
+import MasterDataForm from '@/components/Admin/MasterDataForm';
+import { supabase } from '@/lib/supabase';
 
 interface AdminPanelProps {
   jobs: Job[];

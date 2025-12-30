@@ -1,7 +1,9 @@
 
+'use client'
+
 import React from 'react';
 import { Filter, Zap, MapPin, GraduationCap, RotateCcw } from 'lucide-react';
-import { MasterData } from '../types';
+import { MasterData } from '@/types';
 
 interface JobFilterProps {
   filters: { board: string; location: string; eligibility: string };

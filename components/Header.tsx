@@ -1,4 +1,6 @@
 
+'use client'
+
 import React from 'react';
 import { Search, ShieldCheck, User, LogOut } from 'lucide-react';
 

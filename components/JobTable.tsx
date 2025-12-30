@@ -1,7 +1,9 @@
 
+'use client'
+
 import React, { useEffect, useRef, useState } from 'react';
 import { ExternalLink, ChevronRight, Flame, Clock, Users, Bookmark, BookmarkCheck } from 'lucide-react';
-import { Job } from '../types';
+import { Job } from '@/types';
 
 interface JobTableProps {
   jobs: Job[];
