@@ -7,7 +7,7 @@ import { MasterData } from '@/types';
 
 interface MasterDataFormProps {
   masterData: MasterData;
-  setMasterData: React.Dispatch<React.SetStateAction<MasterData>>;
+  setMasterData: (data: MasterData | ((prev: MasterData) => MasterData)) => void;
 }
 
 const MasterDataForm: React.FC<MasterDataFormProps> = ({ masterData, setMasterData }) => {
