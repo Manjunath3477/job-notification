@@ -12,7 +12,7 @@ interface AdminPanelProps {
   jobs: Job[];
   setJobs: (jobs: Job[]) => void;
   masterData: MasterData;
-  setMasterData: (data: MasterData) => void;
+  setMasterData: (data: MasterData | ((prev: MasterData) => MasterData)) => void;
 }
 
 const AdminPanel: React.FC<AdminPanelProps> = ({ jobs, setJobs, masterData, setMasterData }) => {
